@@ -79,10 +79,13 @@ jobs:
           BUILD_TOOLS_VERSION: "34.0.0"
 
       # Upload signed APK as artifact
+      - name: Rename Signed APK
+        run: mv ${{ steps.sign_app.outputs.signedReleaseFile }} app/build/outputs/apk/release/OpLaserTool-v${{ env.version }}.apk
+
       - uses: actions/upload-artifact@v4
         with:
           name: DistanceMeter APK
-          path: ${{ steps.sign_app.outputs.signedReleaseFile }}
+          path: app/build/outputs/apk/release/OpLaserTool-v${{ env.version }}.apk
 
       # Publish APK to GitHub Releases (Master/Main only)
       - name: Publish APK
@@ -91,7 +94,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: ${{ inputs.prerelease || 'true' }}
-          files: ${{ steps.sign_app.outputs.signedReleaseFile }}
+          files: app/build/outputs/apk/release/OpLaserTool-v${{ env.version }}.apk
           tag_name: v${{ env.version }}
 
       # Upload to Appetize (Optional)
