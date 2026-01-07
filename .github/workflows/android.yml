@@ -1,0 +1,114 @@
+name: Build Distance Meter
+
+env:
+  main_project_module: app
+  playstore_name: Bartixxx
+
+on:
+  push:
+    branches:
+      - 'master'
+      - 'main'
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+  workflow_dispatch:
+    inputs:
+      prerelease:
+        description: 'Mark as Pre-release'
+        required: false
+        type: boolean
+      publish:
+        description: 'Publish release'
+        required: false
+        type: boolean
+        default: true
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04 # Standard stable runner
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set environment variables
+        run: |
+          echo "date_today=$(date +'%Y-%m-%d')" >> $GITHUB_ENV
+          echo "repository_name=$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')" >> $GITHUB_ENV
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Change wrapper permissions
+        run: chmod +x ./gradlew
+
+      - name: Run tests and build project
+        run: |
+          ./gradlew test
+          ./gradlew build
+
+      - name: Build APK release
+        run: ./gradlew assembleRelease
+
+      - name: Get current version
+        id: version-env
+        run: |
+          ./gradlew getVersion
+          echo "version=$(cat app/build/version.txt)" >> $GITHUB_ENV
+
+      # Sign APK release (External Signing Action)
+      # This handles key decoding from Secrets
+      - uses: r0adkll/sign-android-release@v1
+        name: Sign APK
+        id: sign_app
+        with:
+          releaseDirectory: app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.KEYSTORE_FILE }}
+          alias: ${{ secrets.KEY_ALIAS }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: "34.0.0"
+
+      # Upload signed APK as artifact
+      - uses: actions/upload-artifact@v4
+        with:
+          name: DistanceMeter APK
+          path: ${{ steps.sign_app.outputs.signedReleaseFile }}
+
+      # Publish APK to GitHub Releases (Master/Main only)
+      - name: Publish APK
+        if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          prerelease: ${{ inputs.prerelease || 'true' }}
+          files: ${{ steps.sign_app.outputs.signedReleaseFile }}
+          tag_name: v${{ env.version }}
+
+      # Upload to Appetize (Optional)
+      - name: Upload to Appetize
+        if: ${{ secrets.APPETIZE_API_TOKEN != '' }}
+        run: |
+          for i in {1..5}; do
+            response=$(curl -X POST https://api.appetize.io/v1/apps \
+              -H "Content-Type: application/json" \
+              -d '{
+                "token": "${{ secrets.APPETIZE_API_TOKEN }}",
+                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ env.version }}/app-release-signed.apk",
+                "platform": "android",
+                "note": "Updated to version ${{ env.version }}"
+              }' -w "%{http_code}" -o response.json)
+            if [ "$response" -eq 200 ]; then
+              echo "Upload successful"
+              break
+            else
+              echo "Upload failed, retrying in 30 seconds..."
+              sleep 30
+            fi
+          done

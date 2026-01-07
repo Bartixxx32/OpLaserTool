@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Distance Meter</string>
+    <string name="btn_scan">SCAN</string>
+    <string name="btn_stop">STOP</string>
+    <string name="btn_save">SAVE</string>
+    <string name="btn_clear">CLEAR</string>
+    <string name="label_status">STATUS</string>
+    <string name="status_ready">Ready</string>
+    <string name="status_stopped">Stopped</string>
+    <string name="status_signal_fail">Signal Fail</string>
+    <string name="status_phase_fail">Phase Fail</string>
+    <string name="status_wrapper_fail">Wrapper Fail</string>
+    <string name="status_poor_signal">Poor Signal</string>
+    <string name="area_label">AREA (Last 2)</string>
+    <string name="volume_label">VOLUME (Last 3)</string>
+    <string name="history_title">History</string>
+    <string name="measurement_prefix">Measurement #</string>
+    <string name="unit_cm">cm</string>
+    <string name="unit_mm">mm</string>
+    <string name="unit_m2">m²</string>
+    <string name="unit_m3">m³</string>
+    <string name="angle_format">∠ %.1f°</string>
+</resources>

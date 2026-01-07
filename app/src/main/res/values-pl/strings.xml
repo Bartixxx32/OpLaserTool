@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Dalmierz</string>
+    <string name="btn_scan">MIERZ</string>
+    <string name="btn_stop">STOP</string>
+    <string name="btn_save">ZAPISZ</string>
+    <string name="btn_clear">CZYŚĆ</string>
+    <string name="label_status">STATUS</string>
+    <string name="status_ready">Gotowy</string>
+    <string name="status_stopped">Zatrzymano</string>
+    <string name="status_signal_fail">Błąd Sygnału</string>
+    <string name="status_phase_fail">Błąd Fazy</string>
+    <string name="status_wrapper_fail">Błąd Wrappera</string>
+    <string name="status_poor_signal">Słaby Sygnał</string>
+    <string name="area_label">POWIERZCHNIA (Ost. 2)</string>
+    <string name="volume_label">KUBATURA (Ost. 3)</string>
+    <string name="history_title">Historia Pomiarów</string>
+    <string name="measurement_prefix">Pomiar #</string>
+    <string name="unit_cm">cm</string>
+    <string name="unit_mm">mm</string>
+    <string name="unit_m2">m²</string>
+    <string name="unit_m3">m³</string>
+    <string name="angle_format">∠ %.1f°</string>
+</resources>
