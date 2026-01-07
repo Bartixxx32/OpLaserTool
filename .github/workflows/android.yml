@@ -92,23 +92,4 @@ jobs:
           tag_name: v${{ env.version }}
 
       # Upload to Appetize (Optional)
-      - name: Upload to Appetize
-        if: secrets.APPETIZE_API_TOKEN != ''
-        run: |
-          for i in {1..5}; do
-            response=$(curl -X POST https://api.appetize.io/v1/apps \
-              -H "Content-Type: application/json" \
-              -d '{
-                "token": "${{ secrets.APPETIZE_API_TOKEN }}",
-                "url": "https://github.com/${{ github.repository }}/releases/download/v${{ env.version }}/app-release-signed.apk",
-                "platform": "android",
-                "note": "Updated to version ${{ env.version }}"
-              }' -w "%{http_code}" -o response.json)
-            if [ "$response" -eq 200 ]; then
-              echo "Upload successful"
-              break
-            else
-              echo "Upload failed, retrying in 30 seconds..."
-              sleep 30
-            fi
-          done
+
