@@ -2,6 +2,8 @@
 
 **OpLaserTool** is a professional, open-source laser rangefinder application designed specifically for **OnePlus** devices equipped with laser autofocus hardware (e.g., OnePlus 7 Pro, 8 Pro).
 
+![Build Status](https://github.com/Bartixxx32/OpLaserTool/actions/workflows/android.yml/badge.svg)
+
 ## Features ✨
 - **Precision Measurement**: Access raw sensor data directly from `/dev/input/event11`.
 - **Status Monitoring**: Real-time signal quality indicators (Green/Yellow/Red).
