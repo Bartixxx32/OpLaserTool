@@ -25,6 +25,9 @@ on:
         type: boolean
         default: true
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-22.04 # Standard stable runner
