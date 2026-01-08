@@ -14,7 +14,7 @@ Binaries: https://github.com/Bartixxx32/OpLaserTool/releases/download/v%v/OpLase
 Builds:
   - versionName: '1.0'
     versionCode: 1
-    commit: 8456aeeea83bd55a51f3754f1180749b727538a7
+    commit: 4df76afcd8975d6851404cd76d5a17881e8d53b8
     subdir: app
     gradle:
       - yes
