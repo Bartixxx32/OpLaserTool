@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-22.04 # Standard stable runner
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Set environment variables
         run: |
