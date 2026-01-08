@@ -187,30 +187,18 @@ fun RangefinderScreen(modifier: Modifier = Modifier) {
     var job by remember { mutableStateOf<Job?>(null) }
     val TAG = "RangefinderUI"
     val context = androidx.compose.ui.platform.LocalContext.current
-    val vibrator = remember { 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            context.getSystemService(android.os.Vibrator::class.java)
-        } else {
-            context.getSystemService(Context.VIBRATOR_SERVICE) as android.os.Vibrator
-        }
+    val vibrator = remember {
+        context.getSystemService(android.os.Vibrator::class.java)
     }
     
     fun vibrateSingle() {
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            vibrator?.vibrate(android.os.VibrationEffect.createOneShot(50, android.os.VibrationEffect.DEFAULT_AMPLITUDE))
-        } else {
-            vibrator?.vibrate(50)
-        }
+        vibrator?.vibrate(android.os.VibrationEffect.createOneShot(50, android.os.VibrationEffect.DEFAULT_AMPLITUDE))
     }
     
     fun vibrateTriple() {
         // "Puk puk puk" - fast pattern
         val timings = longArrayOf(0, 30, 50, 30, 50, 30) 
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-            vibrator?.vibrate(android.os.VibrationEffect.createWaveform(timings, -1))
-        } else {
-            vibrator?.vibrate(timings, -1)
-        }
+        vibrator?.vibrate(android.os.VibrationEffect.createWaveform(timings, -1))
     }
 
     var savedMeasurements = remember { mutableStateListOf<Double>() }
