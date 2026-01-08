@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Distance Meter</string>
+    <string name="app_name">OnePlus Laser Tool</string>
     <string name="btn_scan">SCAN</string>
     <string name="btn_stop">STOP</string>
     <string name="btn_save">SAVE</string>
