@@ -1,0 +1,11 @@
+OpLaserTool to zaawansowane narzędzie pomiarowe stworzone specjalnie dla smartfonów OnePlus (np. 7 Pro, 8 Pro) wyposażonych w sprzętowy czujnik laserowego autofocusu.
+
+Funkcje:
+- Bezpośredni odczyt danych z czujnika hardware (/dev/input/event11).
+- Pomiar odległości w czasie rzeczywistym z dokładnością do mm.
+- Wizualizacja jakości sygnału i kody diagnostyczne.
+- Inteligentne wygładzanie (Moving Average) dla stabilnych wyników.
+- Watchdog: Wykrywanie braku zasięgu lub zablokowania lasera.
+- Haptyka i nowoczesny interfejs w trybie ciemnym.
+
+Uwaga: Wymagany dostęp Root do odczytu sprzętowych zdarzeń wejściowych.

@@ -1,0 +1,11 @@
+OpLaserTool is a powerful rangefinding utility designed specifically for OnePlus devices (e.g., OnePlus 7 Pro, 8 Pro) that feature dedicated laser autofocus hardware.
+
+Features:
+- Direct raw sensor data access via /dev/input/event11.
+- Real-time distance measurement in centimeters.
+- Signal quality visualization and diagnostic codes.
+- Intelligent smoothing (Moving Average) for stable readings.
+- Sensor Watchdog: Detects when the laser is "Out of Range" or obstructed.
+- Haptic feedback and modern dark-mode UI.
+
+Note: Root access is required to read hardware sensor events.

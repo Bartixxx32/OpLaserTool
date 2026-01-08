@@ -1,0 +1,28 @@
+Categories:
+  - System
+  - Tool
+License: MIT
+AuthorName: Bartixxx
+SourceCode: https://github.com/Bartixxx32/OpLaserTool
+IssueTracker: https://github.com/Bartixxx32/OpLaserTool/issues
+
+Summary: Hardware laser rangefinder for OnePlus devices
+Description: |-
+  Powerful rangefinding utility designed specifically for OnePlus devices (e.g., OnePlus 7 Pro, 8 Pro)
+  that feature dedicated laser autofocus hardware. Requires root.
+
+RepoType: git
+Repo: https://github.com/Bartixxx32/OpLaserTool
+
+Builds:
+  - versionName: 1.0
+    versionCode: 1
+    commit: v1.0
+    subdir: app
+    gradle:
+      - yes
+
+AutoUpdateMode: Version v%v
+UpdateCheckMode: Tags
+CurrentVersion: 1.0
+CurrentVersionCode: 1
