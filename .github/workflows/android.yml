@@ -93,7 +93,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          prerelease: ${{ inputs.prerelease || 'true' }}
+          prerelease: ${{ inputs.prerelease || 'false' }}
           files: app/build/outputs/apk/release/OpLaserTool-v${{ env.version }}.apk
           tag_name: v${{ env.version }}
 
