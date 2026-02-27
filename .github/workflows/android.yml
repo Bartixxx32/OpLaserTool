@@ -82,7 +82,7 @@ jobs:
       - name: Rename Signed APK
         run: mv ${{ steps.sign_app.outputs.signedReleaseFile }} app/build/outputs/apk/release/OpLaserTool-v${{ env.version }}.apk
 
-      - uses: actions/upload-artifact@v6
+      - uses: actions/upload-artifact@v7
         with:
           name: DistanceMeter APK
           path: app/build/outputs/apk/release/OpLaserTool-v${{ env.version }}.apk
