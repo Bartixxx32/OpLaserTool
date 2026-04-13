@@ -90,7 +90,7 @@ jobs:
       # Publish APK to GitHub Releases (Master/Main only)
       - name: Publish APK
         if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: ${{ inputs.prerelease || 'false' }}
