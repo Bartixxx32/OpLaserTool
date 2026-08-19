@@ -16,7 +16,12 @@
 - **Requirement**: Root Access (to read `/dev/input/` events).
 
 ## Installation 📦
-Download the latest signed APK from the [Releases](https://github.com/Bartixxx32/OpLaserTool/releases) page.
+
+[<img src="https://f-droid.org/badge/get-it-on.png"
+     alt="Get it on F-Droid"
+     height="80">](https://f-droid.org/packages/com.bartixxx.distancemeter/)
+
+Download the latest signed APK from the [Releases Section](https://github.com/Bartixxx32/OpLaserTool/releases/latest).
 
 ## License 📄
 This project is licensed under the GNU General Public License v3.0 - see the [LICENSE](LICENSE) file for details.
